@@ -37,11 +37,11 @@ def newpost():
                  
         if new_blog_title.strip()=="":
             error = "Your blog is not titled. It will need a title and a knighthood to be posted."
-            return render_template("newpost.html", error=error)
+            return render_template("newpost.html", blog_body= new_blog_body, error=error)
         if new_blog_body.strip() == "":
             error = "Your blog is invisible. You can't read what you can't see.  Please add visible text."
-            return render_template("newpost.html", error=error)
-        else:
+            return render_template("newpost.html", blog_title= new_blog_title, error=error)
+        if not error:
             blog_title = request.form['blog_title']
             blog_body = request.form['blog_body']
             new_blog = Blog(blog_title, blog_body)

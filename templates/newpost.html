@@ -4,11 +4,11 @@
     <form action ="/newpost" method='post'>
         <label>
             New Blog Title:
-        <input type="text" name='blog_title' />
+        <input type="text" name='blog_title' value="{{blog_title}}" />
         </label>
         <br>
             New Blog Entry:
-        <textarea input type="text" name='blog_body'/>            
+        <textarea input type="text" name='blog_body'/>{{blog_body}}            
         </textarea>
         <br><br>
         <input type="submit" value='Post Blog' />
