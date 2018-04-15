@@ -26,27 +26,37 @@ class Blog(db.Model):
 
 
 
-@app.route("/add", methods=['GET','POST'])
-def add_blog():
-
+@app.route("/newpost", methods=['GET','POST'])
+def newpost():
+    
     if request.method == 'POST':
         new_blog_body = request.form['blog_body']
         new_blog_title = request.form['blog_title']
-          
-   #     if new_blog_title.strip()=="":
-   #         flash("Your blog is not titled. It will need a title and a knighthood to be posted.")
-   #         return render_template("add.html", )
-   #     if new_blog_body() == "":
-   #         error = "Your blog is invisible. You can't read what you can't see.  Please add visible text."
-   #         return redirect("/?error=" + error)
-   #     else:
-        blog_title = request.form['blog_title']
-        blog_body = request.form['blog_body']
-        new_blog = Blog(blog_title, blog_body)
-        db.session.add(new_blog)
-        db.session.commit()
 
-    return render_template('add.html')
+        error= ""
+                 
+        if new_blog_title.strip()=="":
+            error = "Your blog is not titled. It will need a title and a knighthood to be posted."
+            return render_template("newpost.html", error=error)
+        if new_blog_body.strip() == "":
+            error = "Your blog is invisible. You can't read what you can't see.  Please add visible text."
+            return render_template("newpost.html", error=error)
+        else:
+            blog_title = request.form['blog_title']
+            blog_body = request.form['blog_body']
+            new_blog = Blog(blog_title, blog_body)
+            db.session.add(new_blog)
+            db.session.commit()
+            return redirect('/blog')
+
+    else:
+        return render_template('newpost.html')
+
+@app.route("/blog", methods=['GET'])
+def blog():
+    blogs = Blog.query.all()
+    return render_template('blog_posts.html', blogs=blogs)
+    
     
 
 @app.route('/', methods=['POST', 'GET'])

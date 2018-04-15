@@ -1,15 +1,16 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <a href="/add">Add a New Blog Entry</a>
-    <form action="/add" method="post">
+    <a href="/newpost">Add a New Blog Entry</a>
+    <form action="/newpost" method="post">
 
     <hr>
-    
+
     <ul>
         {% for blog in blogs %}
             <li>
                 <h2>{{blog.title}}</h2>
+                <p>{{blog.body}}</p>
             </li>
         {% endfor %}
     </ul>

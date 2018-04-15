@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <form action ="/add" method='post'>
+    <form action ="/newpost" method='post'>
         <label>
             New Blog Title:
         <input type="text" name='blog_title' />
@@ -13,6 +13,10 @@
         <br><br>
         <input type="submit" value='Post Blog' />
     </form>
+
+{% if error %}
+  <p class='error'>{{ error }}</p>
+{% endif %}
   
    
 
