@@ -57,9 +57,10 @@ def blog():
     blogs = Blog.query.all()
     return render_template('blog_posts.html', blogs=blogs)
     
-@app.route("/blog_display", methods=['GET'])
+@app.route("/blog_display/", methods=['GET'])
 def blog_display():
-    x= Blog.query.get(2)
+    y= request.args.get('id')
+    x= Blog.query.get(y)
     return render_template('blog_display.html', blog=x)    
 
 @app.route('/', methods=['POST', 'GET'])
