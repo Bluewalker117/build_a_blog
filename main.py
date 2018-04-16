@@ -57,12 +57,13 @@ def blog():
     blogs = Blog.query.all()
     return render_template('blog_posts.html', blogs=blogs)
     
-    
+@app.route("/blog_display", methods=['GET'])
+def blog_display():
+    x= Blog.query.get(2)
+    return render_template('blog_display.html', blog=x)    
 
 @app.route('/', methods=['POST', 'GET'])
 def index():
-
-
     blogs = Blog.query.all()
     return render_template('blog_posts.html', blogs=blogs)
 
