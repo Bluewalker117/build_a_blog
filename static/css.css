@@ -2,6 +2,10 @@
     color: blue;
 }
 
+.nav {
+    list-style-type:none
+}
+
 .navlink {
     display: inline;
 }
