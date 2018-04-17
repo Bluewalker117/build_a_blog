@@ -47,7 +47,11 @@ def newpost():
             new_blog = Blog(blog_title, blog_body)
             db.session.add(new_blog)
             db.session.commit()
-            return redirect('/blog')
+            new = db.session.query(Blog).order_by(Blog.id.desc()).first()
+            newb = str(new)
+            x = newb[1:-1]
+            z = x[5:]
+            return redirect('/blog_display/?id=' + z)
 
     else:
         return render_template('newpost.html')
